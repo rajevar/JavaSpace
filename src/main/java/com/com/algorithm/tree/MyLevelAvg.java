@@ -3,9 +3,36 @@ package com.com.algorithm.tree;
 import com.com.algorithm.TreeNode;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class MyLevelAvg {
+
+    public List<Double> averageOfLevelsLC(TreeNode root) {
+        if(root==null)
+            return new ArrayList<>();
+
+        Queue<TreeNode> q = new LinkedList<>();
+        List<Double> list = new ArrayList<>();
+        q.add(root);
+
+        while(!q.isEmpty()){
+            int n = q.size();
+            double sum = 0;
+            for(int i=0;i<n;i++){
+                TreeNode t = q.poll();
+                sum+= t.key;
+                if(t.left!=null)
+                    q.add(t.left);
+                if(t.right!=null)
+                    q.add(t.right);
+            }
+            list.add(sum/n);
+        }
+
+        return list;
+    }
 
     private List<Double> averageOfLevels(TreeNode tree) {
         List<Integer> count = new ArrayList<>();
@@ -66,6 +93,7 @@ public class MyLevelAvg {
 
         List<Double> result = avgBinaryTree.averageOfLevels(tree);
         System.out.println(result.toString());
+        System.out.println("LC : " + avgBinaryTree.averageOfLevelsLC(tree));
         avgBinaryTree.preOrder(tree);
     }
 }

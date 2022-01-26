@@ -16,10 +16,11 @@ public class CommandProcessor {
 
     public void run() {
         commandService = new CommandService();
+        Scanner scanner = new Scanner(System.in);
+        AppContext context = new AppContext();
         while(true) {
-            Scanner scanner = new Scanner(System.in);
-            String inputString = scanner.next();
-            commandService.run(inputString);
+            String inputString = scanner.nextLine();
+            commandService.run(inputString, context);
         }
     }
 }

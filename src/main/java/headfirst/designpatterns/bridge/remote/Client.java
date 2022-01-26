@@ -1,5 +1,9 @@
 package headfirst.designpatterns.bridge.remote;
 
+/**
+ * https://refactoring.guru/design-patterns/bridge
+ * why ?
+ */
 public class Client {
 	public static void main(String[] args) {
 		TVFactory tvFactory = new TVFactory();

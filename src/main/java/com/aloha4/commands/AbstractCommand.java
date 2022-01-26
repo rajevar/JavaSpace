@@ -1,6 +1,7 @@
 package com.aloha4.commands;
 
-public abstract class AbstractCommand  {
+public abstract class AbstractCommand implements Command {
+    String params;
     public void preExe() {
         preStep();
         execute();

@@ -11,20 +11,20 @@ public class RemoteLoader {
 		GarageDoor garageDoor = new GarageDoor("");
 		Stereo stereo = new Stereo("Living Room");
   
-		LightOnCommand livingRoomLightOn = 
+		Command livingRoomLightOn =
 				new LightOnCommand(livingRoomLight);
-		LightOffCommand livingRoomLightOff = 
+		Command livingRoomLightOff =
 				new LightOffCommand(livingRoomLight);
-		LightOnCommand kitchenLightOn = 
+		Command kitchenLightOn =
 				new LightOnCommand(kitchenLight);
-		LightOffCommand kitchenLightOff = 
+		Command kitchenLightOff =
 				new LightOffCommand(kitchenLight);
-  
-		CeilingFanOnCommand ceilingFanOn = 
+
+		Command ceilingFanOn =
 				new CeilingFanOnCommand(ceilingFan);
-		CeilingFanOffCommand ceilingFanOff = 
+		Command ceilingFanOff =
 				new CeilingFanOffCommand(ceilingFan);
- 
+
 		GarageDoorUpCommand garageDoorUp =
 				new GarageDoorUpCommand(garageDoor);
 		GarageDoorDownCommand garageDoorDown =
