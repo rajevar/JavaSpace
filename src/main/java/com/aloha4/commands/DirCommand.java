@@ -2,10 +2,10 @@ package com.aloha4.commands;
 
 import com.aloha4.AppContext;
 
-public class DirCommand implements Command {
+public class DirCommand extends AbstractCommand {
 
     @Override
-    public void execute(AppContext context) {
+    public void run() {
         System.out.println("Execute DirCommand..");
     }
 }

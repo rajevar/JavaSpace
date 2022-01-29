@@ -1,22 +1,22 @@
 package com.aloha4.commands;
 
+import com.aloha4.AppContext;
+
 public abstract class AbstractCommand implements Command {
-    String params;
-    public void preExe() {
-        preStep();
-        execute();
-        postStep();
+    String params = null;
+
+    @Override
+    public void execute(AppContext context) {
+        run();
     }
 
-    private void postStep() {
-        System.out.println("--AbstractCommand--postStep");
+    public abstract void run();
+    public String getParams() {
+        return params;
     }
 
-    private void preStep() {
-        System.out.println("--AbstractCommand--preStep");
-    }
-
-    public void execute() {
-        System.out.println("--AbstractCommand--");
+    @Override
+    public void setParams(String params) {
+        this.params = params;
     }
 }
