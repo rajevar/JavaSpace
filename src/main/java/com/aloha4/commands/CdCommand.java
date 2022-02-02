@@ -5,6 +5,8 @@ import com.aloha4.enums.ItemType;
 import com.aloha4.item.ContextItem;
 import com.aloha4.item.Directory;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Optional;
 
 public class CdCommand extends AbstractCommand {
@@ -18,30 +20,36 @@ public class CdCommand extends AbstractCommand {
         System.out.println("Executing cd command");
         String[] currentInput = getContext().getCurrentInput();
         String directoryName = currentInput[1];
-        if(directoryName.equals("..")) {
-            goBack(context);
-        } else {
-            goForward(context,directoryName);
+        String[] dirs = directoryName.split("/");
+        Directory currentDir = context.getCurrentDirectory();
+        for (String dir : dirs) {
+            if (dir.equals("..")) {
+                currentDir = goBack(currentDir);
+            } else {
+                currentDir = goForward(dir, currentDir);
+            }
         }
-
+        context.setCurrentDirectory(currentDir);
     }
 
-    private void goBack(AppContext context) {
-        if(context.getCurrentDirectory().getParentDirectory() != null) {
-            context.setCurrentDirectory(context.getCurrentDirectory().getParentDirectory());
+    private Directory goBack(Directory currentDir) {
+        if(Objects.nonNull(currentDir.getParentDirectory())) {
+            currentDir = currentDir.getParentDirectory();
         } else {
             System.out.println("Already in the root.");
         }
+        return currentDir;
     }
 
-    private void goForward(AppContext context, String directoryName) {
-        Optional<ContextItem> toDirectory = context.getCurrentDirectory().getItems().stream()
+    private Directory goForward(String directoryName, Directory currentDir) {
+        Optional<ContextItem> toDirectory = currentDir.getItems().stream()
                 .filter(contextItem -> contextItem.getItemType() == ItemType.DIRECTORY && contextItem.getPath().equalsIgnoreCase(directoryName)).findFirst();
         if(toDirectory.isPresent()) {
-            context.setCurrentDirectory((Directory) toDirectory.get());
+            currentDir = ((Directory) toDirectory.get());
         } else {
             System.out.println("Invalid directory name: " + directoryName);
         }
+        return currentDir;
     }
 
 }
