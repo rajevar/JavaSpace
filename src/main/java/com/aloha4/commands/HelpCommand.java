@@ -2,10 +2,9 @@ package com.aloha4.commands;
 
 import com.aloha4.AppContext;
 
-public class HelpCommand extends AbstractCommand {
-
+public class HelpCommand implements Command {
     @Override
-    public void run() {
-        System.out.println("Executes HelpCommand..");
+    public void execute(AppContext context) {
+        System.out.println("Executes HelpCommand.." + context.getCurrentInput()[0]);
     }
 }

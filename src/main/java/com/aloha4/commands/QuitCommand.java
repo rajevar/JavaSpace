@@ -2,11 +2,12 @@ package com.aloha4.commands;
 
 import com.aloha4.AppContext;
 
-public class QuitCommand extends AbstractCommand {
+public class QuitCommand implements Command {
+
 
     @Override
-    public void run() {
-        System.out.println("Executing Quit command");
+    public void execute(AppContext context) {
+        System.out.println("Executing Quit command: ");
         System.exit(1);
     }
 }

@@ -3,20 +3,25 @@ package com.aloha4.commands;
 import com.aloha4.AppContext;
 
 public abstract class AbstractCommand implements Command {
-    String params = null;
+    AppContext context;
+    protected abstract void validate();
 
     @Override
     public void execute(AppContext context) {
-        run();
+        setContext(context);
+        validate();
     }
 
-    public abstract void run();
-    public String getParams() {
-        return params;
+    private void setContext(AppContext context) {
+        this.context = context;
     }
 
-    @Override
-    public void setParams(String params) {
-        this.params = params;
+    public AppContext getContext() {
+        return context;
+    }
+
+    public boolean isValid() {
+        String[] currentInput = getContext().getCurrentInput();
+        return currentInput.length >= 2 && context.getCurrentDirectory().getItems() != null;
     }
 }

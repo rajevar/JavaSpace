@@ -1,17 +1,18 @@
 package com.aloha4.enums;
 
-import com.aloha4.commands.Command;
-import com.aloha4.commands.DirCommand;
-import com.aloha4.commands.HelpCommand;
-import com.aloha4.commands.QuitCommand;
+import com.aloha4.commands.*;
 
 import java.util.Arrays;
 
 public enum CommandType{
     HELP("help", new HelpCommand()),
-    DIR("dir", new DirCommand()),
-    LS("ls", new DirCommand()),
+    LS("ls", new LsCommand()),
+    CD("cd", new CdCommand()),
+    MKDIR("mkdir", new MkDirCommand()),
+    TOUCH("touch", new TouchCommand()),
+    PWD("pwd", new PwdCommand()),
     QUIT("quit", new QuitCommand());
+
 
     private final String commandName;
     private final Command command;

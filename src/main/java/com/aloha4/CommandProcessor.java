@@ -1,5 +1,6 @@
 package com.aloha4;
 
+import com.aloha4.item.Directory;
 import com.aloha4.service.CommandService;
 
 import java.util.Scanner;
@@ -18,6 +19,8 @@ public class CommandProcessor {
         commandService = new CommandService();
         Scanner scanner = new Scanner(System.in);
         AppContext context = new AppContext();
+        Directory root = new Directory("root");
+        context.setCurrentDirectory(root);
         while(true) {
             String inputString = scanner.nextLine();
             commandService.run(inputString, context);
